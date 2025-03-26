@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/basicWebsiteSai/static/css/main.f9effcd1.css",
-    "main.js": "/basicWebsiteSai/static/js/main.7e6a4f40.js",
+    "main.js": "/basicWebsiteSai/static/js/main.0d082d06.js",
     "static/js/592.48cc23e9.chunk.js": "/basicWebsiteSai/static/js/592.48cc23e9.chunk.js",
     "static/media/AboutpageBG.jpg": "/basicWebsiteSai/static/media/AboutpageBG.6a4a1a0db12a2b085c88.jpg",
     "static/media/GaneshaAndSwami.jpg": "/basicWebsiteSai/static/media/GaneshaAndSwami.8fa68c788322990f1ba5.jpg",
     "index.html": "/basicWebsiteSai/index.html",
     "main.f9effcd1.css.map": "/basicWebsiteSai/static/css/main.f9effcd1.css.map",
-    "main.7e6a4f40.js.map": "/basicWebsiteSai/static/js/main.7e6a4f40.js.map",
+    "main.0d082d06.js.map": "/basicWebsiteSai/static/js/main.0d082d06.js.map",
     "592.48cc23e9.chunk.js.map": "/basicWebsiteSai/static/js/592.48cc23e9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f9effcd1.css",
-    "static/js/main.7e6a4f40.js"
+    "static/js/main.0d082d06.js"
   ]
 }
