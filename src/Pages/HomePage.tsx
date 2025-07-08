@@ -14,18 +14,18 @@ export const HomePage = () => {
         sx={{ height: "100%", position: "relative", overflow: "hidden" }}
       >
         <img
-          src={GaneshaAndSwami}
-          alt="GaneshaAndSwami"
+          src={AboutpageWeddingBG}
+          alt="AboutpageWeddingBG"
           style={{ width: "90vw", height: "auto", objectFit: "cover" }}
         />
-        <Zoom in={true} style={{ transitionDelay: "500ms" }}>
+        {/* <Zoom in={true} style={{ transitionDelay: "500ms" }}>
           <Typography className="header">Om Sai Ram . Jai Ganesha</Typography>
-        </Zoom>
-        {/* <Grow in={true} style={{ transitionDelay: "500ms" }}>
+        </Zoom> */}
+        <Grow in={true} style={{ transitionDelay: "500ms" }}>
           <Typography className="header">
             Make your occasion memorable with us!
           </Typography>
-        </Grow> */}
+        </Grow>
       </Box>
     </Box>
   );

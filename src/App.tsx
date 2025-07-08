@@ -10,6 +10,8 @@ import { ContactPage } from "./Pages/ContactPage";
 import { Box, Grid } from "@mui/material";
 import ExplorePage from "./Pages/ExplorePage";
 import Practice from "./Pages/Practice";
+import PlayGround from "./Components/PracticeFiles/PlayGround";
+import Practice2 from "./Pages/Practice2";
 // import './AppStyles.scss'
 
 function App() {
@@ -24,7 +26,9 @@ function App() {
           <Route path="/about" element={<AboutPage></AboutPage>}></Route>
           <Route path="/contact" element={<ContactPage></ContactPage>}></Route>
           <Route path="/explore" element={<ExplorePage></ExplorePage>}></Route>
-          <Route path="/prac" element={<Practice></Practice>}></Route>
+          <Route path="/pr" element={<Practice></Practice>}></Route>
+          <Route path="/pr2" element={<Practice2></Practice2>}></Route>
+          <Route path="/pg" element={<PlayGround></PlayGround>}></Route>
         </Routes>
       </Grid>
     </>
