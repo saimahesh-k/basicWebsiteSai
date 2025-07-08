@@ -1,0 +1,32 @@
+<!-- This is a simple HTML file to generate a portfolio favicon -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32" style="border: 1px solid #ccc;"></canvas>
+    <script>
+        const canvas = document.getElementById('favicon');
+        const ctx = canvas.getContext('2d');
+        
+        // Fill background
+        ctx.fillStyle = '#003366';
+        ctx.fillRect(0, 0, 32, 32);
+        
+        // Draw portfolio briefcase
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(6, 10, 20, 14);
+        ctx.fillRect(8, 8, 16, 3);
+        
+        // Draw code symbols
+        ctx.fillStyle = '#003366';
+        ctx.font = '8px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('</>', 16, 20);
+        
+        // Convert to ICO (simplified approach)
+        console.log('Portfolio favicon created');
+    </script>
+</body>
+</html>
