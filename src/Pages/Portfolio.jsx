@@ -20,7 +20,6 @@ const portfolioData = {
     "TypeScript",
     "JavaScript",
     "C#",
-    "Python",
     "SQL",
     "HTML",
     "CSS",
@@ -35,6 +34,7 @@ const portfolioData = {
     "GraphQL",
     "Git",
     "Azure DevOps",
+    "Python",
   ],
   experience: [
     {

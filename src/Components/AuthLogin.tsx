@@ -44,11 +44,11 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
     <Container maxWidth="sm">
       <Box
         sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%)'
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(135deg, #f8f9fc 0%, #e9ecef 100%)",
         }}
       >
         <motion.div
@@ -56,11 +56,11 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <Card 
-            sx={{ 
-              width: 400, 
-              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-              borderRadius: 2
+          <Card
+            sx={{
+              width: 400,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+              borderRadius: 2,
             }}
           >
             <CardContent sx={{ p: 4 }}>
@@ -69,15 +69,15 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Typography 
-                  variant="h4" 
-                  component="h1" 
-                  gutterBottom 
-                  sx={{ 
-                    textAlign: 'center', 
-                    color: '#003366',
-                    fontWeight: 'bold',
-                    mb: 3
+                <Typography
+                  variant="h4"
+                  component="h1"
+                  gutterBottom
+                  sx={{
+                    textAlign: "center",
+                    color: "#003366",
+                    fontWeight: "bold",
+                    mb: 3,
                   }}
                 >
                   Login
@@ -99,7 +99,7 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
                   sx={{ mb: 2 }}
                   required
                 />
-                
+
                 <TextField
                   fullWidth
                   label="Password"
@@ -130,15 +130,15 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
                   size="large"
                   disabled={loading}
                   sx={{
-                    backgroundColor: '#003366',
-                    '&:hover': {
-                      backgroundColor: '#00509e',
+                    backgroundColor: "#003366",
+                    "&:hover": {
+                      backgroundColor: "#00509e",
                     },
                     py: 1.5,
-                    fontSize: '1.1rem'
+                    fontSize: "1.1rem",
                   }}
                 >
-                  {loading ? 'Signing in...' : 'Sign In'}
+                  {loading ? "Signing in..." : "Sign In"}
                 </Button>
               </motion.form>
 
@@ -147,15 +147,16 @@ const AuthLogin: React.FC<AuthLoginProps> = ({ onLogin }) => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <Typography 
-                  variant="body2" 
-                  sx={{ 
-                    textAlign: 'center', 
-                    mt: 3, 
-                    color: '#6c757d' 
+                <Typography
+                  variant="body2"
+                  sx={{
+                    textAlign: "center",
+                    mt: 3,
+                    color: "#6c757d",
                   }}
                 >
-                  Demo credentials: admin / admin123
+                  {/* Demo credentials: admin / admin123 */}
+                  Demo credentials: None
                 </Typography>
               </motion.div>
             </CardContent>
