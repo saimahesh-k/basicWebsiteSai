@@ -65,6 +65,8 @@ export default function DrawerAppBar(props: Props) {
       navigate('/explore');
     } else if (item === 'practice'){
       navigate('/pr');
+    } else if (item === 'Home'){
+      navigate('/home')
     }
     else {
       navigate('/');

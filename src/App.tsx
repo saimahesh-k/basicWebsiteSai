@@ -4,7 +4,7 @@ import "./App.css";
 import { HomePage } from "./Pages/HomePage";
 
 import DrawerAppBar from "./Components/AppBar";
-import { Route, Router, Routes } from "react-router";
+import { Route, Router, Routes, useLocation } from "react-router";
 import { AboutPage } from "./Pages/AboutPage";
 import { ContactPage } from "./Pages/ContactPage";
 import { Box, Grid } from "@mui/material";
@@ -12,17 +12,24 @@ import ExplorePage from "./Pages/ExplorePage";
 import Practice from "./Pages/Practice";
 import PlayGround from "./Components/PracticeFiles/PlayGround";
 import Practice2 from "./Pages/Practice2";
+import Portfolio from "./Pages/Portfolio";
 // import './AppStyles.scss'
 
 function App() {
+  const location = useLocation();
+  const isPortfolioPage = location.pathname === '/';
+
   return (
     <>
-      <Grid sx={{ height: "11vh" }}>
-        <DrawerAppBar></DrawerAppBar>
-      </Grid>
-      <Grid sx={{ height: "89vh" }}>
+      {!isPortfolioPage && (
+        <Grid sx={{ height: "11vh" }}>
+          <DrawerAppBar></DrawerAppBar>
+        </Grid>
+      )}
+      <Grid sx={{ height: isPortfolioPage ? "100vh" : "89vh" }}>
         <Routes>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route path="/" element={<Portfolio></Portfolio>}></Route>
+          <Route path="/home" element={<HomePage></HomePage>}></Route>
           <Route path="/about" element={<AboutPage></AboutPage>}></Route>
           <Route path="/contact" element={<ContactPage></ContactPage>}></Route>
           <Route path="/explore" element={<ExplorePage></ExplorePage>}></Route>
