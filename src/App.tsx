@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { HomePage } from "./Pages/HomePage";
@@ -13,11 +13,31 @@ import Practice from "./Pages/Practice";
 import PlayGround from "./Components/PracticeFiles/PlayGround";
 import Practice2 from "./Pages/Practice2";
 import Portfolio from "./Pages/Portfolio";
+import AuthLogin from "./Components/AuthLogin";
 // import './AppStyles.scss'
 
 function App() {
   const location = useLocation();
   const isPortfolioPage = location.pathname === '/';
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if user is already authenticated (persisted in localStorage)
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated');
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', 'true');
+  };
+
+  // If not portfolio page and not authenticated, show login
+  if (!isPortfolioPage && !isAuthenticated) {
+    return <AuthLogin onLogin={handleLogin} />;
+  }
 
   return (
     <>

@@ -10,6 +10,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -73,6 +74,15 @@ export default function DrawerAppBar(props: Props) {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    navigate('/');
+    // Force a page refresh to trigger auth check
+    setTimeout(() => {
+      global.window?.location.reload();
+    }, 100);
+  }
+
   return (
     <Box sx={{ display: "flex" }}>
       {/* <CssBaseline /> */}
@@ -104,6 +114,13 @@ export default function DrawerAppBar(props: Props) {
                 {item}
               </Button>
             ))}
+            <IconButton
+              onClick={handleLogout}
+              sx={{ color: "#fff", ml: 2 }}
+              title="Logout"
+            >
+              <LogoutIcon />
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>

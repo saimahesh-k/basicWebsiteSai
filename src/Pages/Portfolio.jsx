@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaLinkedin, FaEnvelope, FaPhone, FaChevronDown } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Portfolio.css";
 
@@ -92,6 +93,7 @@ const portfolioData = {
 export default function Portfolio() {
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+  const navigate = useNavigate();
 
   // Function to copy phone number to clipboard
   const copyPhoneToClipboard = async () => {
@@ -434,6 +436,35 @@ export default function Portfolio() {
             </li>
           ))}
         </ul>
+      </motion.section>
+
+      {/* Navigation to Other Pages */}
+      <motion.section 
+        className="text-center mb-4" 
+        variants={itemVariants}
+      >
+        <motion.button
+          onClick={() => navigate('/home')}
+          className="btn btn-sm"
+          whileHover={{ 
+            scale: 1.1,
+            opacity: 0.8
+          }}
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+          style={{
+            backgroundColor: "transparent",
+            color: "#6c757d",
+            fontSize: "10px",
+            padding: "2px 6px",
+            border: "1px solid #e9ecef",
+            borderRadius: "12px",
+            fontWeight: "400",
+            opacity: 0.4
+          }}
+        >
+          •••
+        </motion.button>
       </motion.section>
 
       <motion.footer 
