@@ -60,7 +60,7 @@ const NewsPage: React.FC = () => {
         gutterBottom
         textAlign="center"
       >
-        Trending News Topics
+        Trending News Topics (Hi Vishal L!)
       </Typography>
 
       {loading ? (
