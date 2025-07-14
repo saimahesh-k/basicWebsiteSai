@@ -13,12 +13,17 @@ import Practice from "./Pages/Practice";
 import PlayGround from "./Components/PracticeFiles/PlayGround";
 import Practice2 from "./Pages/Practice2";
 import Portfolio from "./Pages/Portfolio";
+import NewsPage from "./Pages/NewsPage";
 import AuthLogin from "./Components/AuthLogin";
+import TopicPage from "./Pages/TopicPage";
 // import './AppStyles.scss'
 
 function App() {
   const location = useLocation();
   const isPortfolioPage = location.pathname === '/';
+  const isNewsPage = location.pathname === '/news';
+  const isTopicPage = location.pathname.startsWith('/news/');
+  const isPublicPage = isPortfolioPage || isNewsPage || isTopicPage;
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Check if user is already authenticated (persisted in localStorage)
@@ -34,21 +39,24 @@ function App() {
     localStorage.setItem('isAuthenticated', 'true');
   };
 
-  // If not portfolio page and not authenticated, show login
-  if (!isPortfolioPage && !isAuthenticated) {
+  // If not public page and not authenticated, show login
+  if (!isPublicPage && !isAuthenticated) {
     return <AuthLogin onLogin={handleLogin} />;
   }
 
   return (
     <>
-      {!isPortfolioPage && (
+      {!isPublicPage && (
         <Grid sx={{ height: "11vh" }}>
           <DrawerAppBar></DrawerAppBar>
         </Grid>
       )}
-      <Grid sx={{ height: isPortfolioPage ? "100vh" : "89vh" }}>
+      <Grid sx={{ height: isPublicPage ? "100vh" : "89vh" }}>
         <Routes>
           <Route path="/" element={<Portfolio></Portfolio>}></Route>
+          <Route path="/news" element={<NewsPage></NewsPage>}></Route>
+          <Route path="/news/:slug" element={<TopicPage />} />
+          <Route path="/news/:slug/:articleId" element={<TopicPage />} />
           <Route path="/home" element={<HomePage></HomePage>}></Route>
           <Route path="/about" element={<AboutPage></AboutPage>}></Route>
           <Route path="/contact" element={<ContactPage></ContactPage>}></Route>

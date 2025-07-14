@@ -25,7 +25,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact', 'Explore Our Work', 'practice'];
+const navItems = ['Home', 'About', 'Contact', 'Explore Our Work', 'News', 'practice'];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -64,6 +64,8 @@ export default function DrawerAppBar(props: Props) {
       navigate('/contact');
     }else if (item === 'Explore Our Work'){
       navigate('/explore');
+    } else if (item === 'News'){
+      navigate('/news');
     } else if (item === 'practice'){
       navigate('/pr');
     } else if (item === 'Home'){

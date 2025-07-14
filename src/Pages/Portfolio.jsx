@@ -443,28 +443,50 @@ export default function Portfolio() {
         className="text-center mb-4" 
         variants={itemVariants}
       >
-        <motion.button
-          onClick={() => navigate('/home')}
-          className="btn btn-sm"
-          whileHover={{ 
-            scale: 1.1,
-            opacity: 0.8
-          }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2 }}
-          style={{
-            backgroundColor: "transparent",
-            color: "#6c757d",
-            fontSize: "10px",
-            padding: "2px 6px",
-            border: "1px solid #e9ecef",
-            borderRadius: "12px",
-            fontWeight: "400",
-            opacity: 0.4
-          }}
-        >
-          •••
-        </motion.button>
+        <div className="d-flex justify-content-center gap-3 align-items-center">
+          <motion.button
+            onClick={() => navigate('/news')}
+            className="btn btn-outline-secondary btn-sm"
+            whileHover={{ 
+              scale: 1.05,
+              borderColor: "#003366",
+              color: "#003366"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              borderRadius: "20px",
+              fontSize: "12px",
+              padding: "4px 12px",
+              fontWeight: "500"
+            }}
+          >
+            📰 News
+          </motion.button>
+          
+          <motion.button
+            onClick={() => navigate('/home')}
+            className="btn btn-sm"
+            whileHover={{ 
+              scale: 1.1,
+              opacity: 0.8
+            }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              backgroundColor: "transparent",
+              color: "#6c757d",
+              fontSize: "10px",
+              padding: "2px 6px",
+              border: "1px solid #e9ecef",
+              borderRadius: "12px",
+              fontWeight: "400",
+              opacity: 0.4
+            }}
+          >
+            •••
+          </motion.button>
+        </div>
       </motion.section>
 
       <motion.footer 
