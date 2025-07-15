@@ -1,7 +1,7 @@
 // File: src/pages/TopicPage.tsx
 
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -11,7 +11,9 @@ import {
   CardContent,
   Chip,
   CircularProgress,
+  Stack,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 interface Topic {
   id: number;
@@ -27,9 +29,19 @@ interface Article {
   headline_image: string;
 }
 
+const StyledCard = styled(Card)(({ theme }) => ({
+  height: "100%",
+  borderRadius: 16,
+  boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)",
+  transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+  "&:hover": {
+    transform: "translateY(-4px)",
+    boxShadow: "0 12px 24px rgba(0, 0, 0, 0.15)",
+  },
+}));
+
 const TopicPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,65 +69,81 @@ const TopicPage: React.FC = () => {
   }, [slug]);
 
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: "1200px", mx: "auto" }}>
       <Typography
         variant="h4"
         fontWeight="bold"
         gutterBottom
         textAlign="center"
       >
-        News Articles
+        {topics.find((t) => t.slug === slug)?.name || "News Articles"}
       </Typography>
 
-      <Box sx={{ mb: 4, textAlign: "center" }}>
-        {topics.map((topic) => (
-          <Chip
-            key={topic.slug}
-            label={topic.name}
-            onClick={() => navigate(`/news/${topic.slug}`)}
-            color={topic.slug === slug ? "primary" : "default"}
-            sx={{ m: 0.5 }}
-            clickable
-          />
-        ))}
+      <Box
+        sx={{
+          mb: 4,
+          overflowX: "auto",
+          whiteSpace: "nowrap",
+          pb: 1,
+          scrollbarWidth: "thin",
+          "&::-webkit-scrollbar": { display: "none" },
+        }}
+      >
+        <Stack direction="row" spacing={1}>
+          {topics.map((topic) => (
+            <Chip
+              key={topic.slug}
+              label={topic.name}
+              onClick={() => (window.location.href = `/news/${topic.slug}`)}
+              color={topic.slug === slug ? "primary" : "default"}
+              clickable
+            />
+          ))}
+        </Stack>
       </Box>
 
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
           <CircularProgress />
         </Box>
+      ) : articles.length === 0 ? (
+        <Typography textAlign="center" mt={8} color="text.secondary">
+          No articles found.
+        </Typography>
       ) : (
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           {articles.map((article) => (
             <Grid item xs={12} sm={6} md={4} key={article.id}>
-              <CardActionArea
-                onClick={() => navigate(`/news/${slug}/${article.id}`)}
+              <a
+                href={article.reference_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                <Card sx={{ height: "100%", borderRadius: 3, boxShadow: 3 }}>
-                  {article.headline_image && (
-                    <Box
-                      component="img"
-                      src={article.headline_image}
-                      alt={article.title}
-                      sx={{
-                        width: "100%",
-                        height: 180,
-                        objectFit: "cover",
-                        borderTopLeftRadius: 12,
-                        borderTopRightRadius: 12,
-                      }}
-                    />
-                  )}
+                <StyledCard>
                   <CardContent>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        fontSize: "1.1rem",
+                        lineHeight: 1.4,
+                        minHeight: 64,
+                      }}
+                    >
                       {article.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ minHeight: 60 }}
+                    >
                       {article.content.slice(0, 100)}...
                     </Typography>
                   </CardContent>
-                </Card>
-              </CardActionArea>
+                </StyledCard>
+              </a>
             </Grid>
           ))}
         </Grid>
