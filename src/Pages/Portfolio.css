@@ -236,6 +236,7 @@ body {
   background: var(--gradient-primary);
   opacity: 0;
   transition: opacity var(--transition-normal);
+  border-radius: var(--radius-2xl);
 }
 
 .contact-link:hover {

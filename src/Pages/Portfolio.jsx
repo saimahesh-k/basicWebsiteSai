@@ -301,21 +301,21 @@ export default function Portfolio() {
                 whileHover={{ scale: 1.1, rotateY: 15 }}
                 whileTap={{ scale: 0.95 }}
                 title={`Click to copy: ${portfolioData.contact.phone}`}
-                style={{ cursor: "pointer", position: "relative" }}
+                style={{ cursor: "pointer", position: "relative", overflow: "visible" }}
               >
                 <FaPhone />
                 <AnimatePresence>
                   {showCopiedMessage === "phone" && (
                     <motion.div
                       initial={{ opacity: 0, y: -10, scale: 0.8 }}
-                      animate={{ opacity: 1, y: -60, scale: 1 }}
+                      animate={{ opacity: 1, y: -50, scale: 1 }}
                       exit={{ opacity: 0, y: -80, scale: 0.8 }}
                       style={{
                         position: "absolute",
                         top: "0",
-                        left: "50%",
+                        left: "0",
                         transform: "translateX(-50%)",
-                        background: "var(--success)",
+                        background: "var(--primary)",
                         color: "white",
                         padding: "6px 12px",
                         borderRadius: "8px",
@@ -323,7 +323,7 @@ export default function Portfolio() {
                         fontWeight: "600",
                         whiteSpace: "nowrap",
                         boxShadow: "var(--shadow-lg)",
-                        zIndex: 1000,
+                        zIndex: 9999,
                       }}
                     >
                       Copied!
