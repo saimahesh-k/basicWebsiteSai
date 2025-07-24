@@ -749,6 +749,28 @@ body {
 }
 
 /* Responsive Design */
+/* Profile image responsive sizing from 1536px down to 500px */
+@media (max-width: 1536px) {
+  .profile-image-container {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .profile-image-container {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .profile-image-container {
+    width: 280px;
+    height: 280px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -787,6 +809,53 @@ body {
   
   .experience-item::before {
     left: -var(--space-5);
+  }
+
+  /* Responsive scroll indicator for tablet */
+  .scroll-indicator {
+    font-size: 0.75rem;
+  }
+  
+  .scroll-arrow {
+    width: 14px;
+    height: 14px;
+    border-width: 1px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-image-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Responsive scroll indicator for mobile */
+  .scroll-indicator {
+    font-size: 0.7rem;
+  }
+  
+  .scroll-arrow {
+    width: 12px;
+    height: 12px;
+    border-width: 1px;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-image-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* Responsive scroll indicator for small mobile */
+  .scroll-indicator {
+    font-size: 0.65rem;
+  }
+  
+  .scroll-arrow {
+    width: 10px;
+    height: 10px;
+    border-width: 1px;
   }
 }
 
