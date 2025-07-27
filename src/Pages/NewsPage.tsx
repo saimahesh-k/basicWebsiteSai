@@ -43,6 +43,20 @@ const iconMap: Record<string, JSX.Element> = {
   "viral-trends-memes": <WhatshotIcon sx={{ fontSize: 30, mb: 1 }} />,
 };
 
+// Define the order of categories as specified
+const categoryOrder = [
+  'startup-business',
+  'entertainment-celebrities', 
+  'politics-governance',
+  'cricket-sports',
+  'technology-news',
+  'ai-innovation',
+  'social-media',
+  'viral-trends-memes',
+  'cybersecurity-privacy',
+  'mobile-gadget-reviews'
+];
+
 const GradientCard = styled(Card)(({ theme }) => ({
   background: "linear-gradient(135deg, #2193b0, #6dd5ed)",
   color: "#fff",
@@ -68,7 +82,23 @@ const NewsPage: React.FC = () => {
     fetch("https://ksaimahesh.in/get_topics.php")
       .then((res) => res.json())
       .then((data) => {
-        setTopics(data);
+        // Sort topics according to the specified order
+        const sortedTopics = data.sort((a: Topic, b: Topic) => {
+          const aIndex = categoryOrder.indexOf(a.slug);
+          const bIndex = categoryOrder.indexOf(b.slug);
+          
+          // If both topics are in the order list, sort by their position
+          if (aIndex !== -1 && bIndex !== -1) {
+            return aIndex - bIndex;
+          }
+          // If only one is in the list, prioritize it
+          if (aIndex !== -1) return -1;
+          if (bIndex !== -1) return 1;
+          // If neither is in the list, maintain original order
+          return 0;
+        });
+        
+        setTopics(sortedTopics);
         setLoading(false);
       })
       .catch((err) => {

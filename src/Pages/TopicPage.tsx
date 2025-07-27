@@ -9,6 +9,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
+  CardMedia,
   Chip,
   CircularProgress,
   Stack,
@@ -27,7 +28,23 @@ interface Article {
   content: string;
   reference_url: string;
   headline_image: string;
+  created_at?: string;
+  published_date?: string;
 }
+
+// Define the order of categories as specified
+const categoryOrder = [
+  'startup-business',
+  'entertainment-celebrities', 
+  'politics-governance',
+  'cricket-sports',
+  'technology-news',
+  'ai-innovation',
+  'social-media',
+  'viral-trends-memes',
+  'cybersecurity-privacy',
+  'mobile-gadget-reviews'
+];
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -49,7 +66,25 @@ const TopicPage: React.FC = () => {
   useEffect(() => {
     fetch("https://ksaimahesh.in/get_topics.php")
       .then((res) => res.json())
-      .then((data) => setTopics(data))
+      .then((data) => {
+        // Sort topics according to the specified order
+        const sortedTopics = data.sort((a: Topic, b: Topic) => {
+          const aIndex = categoryOrder.indexOf(a.slug);
+          const bIndex = categoryOrder.indexOf(b.slug);
+          
+          // If both topics are in the order list, sort by their position
+          if (aIndex !== -1 && bIndex !== -1) {
+            return aIndex - bIndex;
+          }
+          // If only one is in the list, prioritize it
+          if (aIndex !== -1) return -1;
+          if (bIndex !== -1) return 1;
+          // If neither is in the list, maintain original order
+          return 0;
+        });
+        
+        setTopics(sortedTopics);
+      })
       .catch(console.error);
   }, []);
 
@@ -59,7 +94,28 @@ const TopicPage: React.FC = () => {
     fetch(`https://ksaimahesh.in/get_articles_by_slug.php?slug=${slug}`)
       .then((res) => res.json())
       .then((data) => {
-        setArticles(data.articles || []);
+        let articlesList = data.articles || [];
+        
+        // Filter articles created after 2025-07-25
+        const cutoffDate = new Date('2025-07-25T00:00:00');
+        const recentArticles = articlesList.filter((article: Article) => {
+          const articleDate = new Date(article.created_at || article.published_date || 0);
+          return articleDate > cutoffDate;
+        });
+        
+        // Remove duplicate articles based on title
+        const uniqueArticles = recentArticles.filter((article: Article, index: number, self: Article[]) => {
+          return index === self.findIndex((a) => a.title.toLowerCase().trim() === article.title.toLowerCase().trim());
+        });
+        
+        // Sort articles by date (latest first)
+        uniqueArticles.sort((a: Article, b: Article) => {
+          const dateA = new Date(a.created_at || a.published_date || 0);
+          const dateB = new Date(b.created_at || b.published_date || 0);
+          return dateB.getTime() - dateA.getTime();
+        });
+        
+        setArticles(uniqueArticles);
         setLoading(false);
       })
       .catch((err) => {
@@ -121,6 +177,22 @@ const TopicPage: React.FC = () => {
                 style={{ textDecoration: "none" }}
               >
                 <StyledCard>
+                  {article.headline_image && (
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={article.headline_image}
+                      alt={article.title}
+                      sx={{
+                        objectFit: "cover",
+                        borderRadius: "16px 16px 0 0"
+                      }}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                      }}
+                    />
+                  )}
                   <CardContent>
                     <Typography
                       variant="h6"
@@ -129,7 +201,7 @@ const TopicPage: React.FC = () => {
                         fontWeight: 600,
                         fontSize: "1.1rem",
                         lineHeight: 1.4,
-                        minHeight: 64,
+                        minHeight: article.headline_image ? 48 : 64,
                       }}
                     >
                       {article.title}
@@ -137,9 +209,9 @@ const TopicPage: React.FC = () => {
                     <Typography
                       variant="body2"
                       color="text.secondary"
-                      sx={{ minHeight: 60 }}
+                      sx={{ minHeight: 90 }}
                     >
-                      {article.content.slice(0, 100)}...
+                      {article.content.slice(0, 200)}...
                     </Typography>
                   </CardContent>
                 </StyledCard>
