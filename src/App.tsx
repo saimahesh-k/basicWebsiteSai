@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { HomePage } from "./Pages/HomePage";
 
 import DrawerAppBar from "./Components/AppBar";
-import { Route, Router, Routes, useLocation } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import { AboutPage } from "./Pages/AboutPage";
 import { ContactPage } from "./Pages/ContactPage";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import ExplorePage from "./Pages/ExplorePage";
 import Practice from "./Pages/Practice";
 import PlayGround from "./Components/PracticeFiles/PlayGround";
@@ -16,6 +15,8 @@ import Portfolio from "./Pages/Portfolio";
 import NewsPage from "./Pages/NewsPage";
 import AuthLogin from "./Components/AuthLogin";
 import TopicPage from "./Pages/TopicPage";
+import NewsAboutPage from "./Pages/NewsAboutPage";
+import NewsContactPage from "./Pages/NewsContactPage";
 // import './AppStyles.scss'
 
 function App() {
@@ -55,6 +56,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Portfolio></Portfolio>}></Route>
           <Route path="/news" element={<NewsPage></NewsPage>}></Route>
+          <Route path="/news/about" element={<NewsAboutPage />} />
+          <Route path="/news/contact" element={<NewsContactPage />} />
           <Route path="/news/:slug" element={<TopicPage />} />
           <Route path="/news/:slug/:articleId" element={<TopicPage />} />
           <Route path="/home" element={<HomePage></HomePage>}></Route>

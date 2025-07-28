@@ -7,7 +7,6 @@ import {
   Typography,
   Grid,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Chip,
@@ -15,6 +14,8 @@ import {
   Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import NewsHeader from "../Components/NewsHeader";
+import NewsFooter from "../Components/NewsFooter";
 
 interface Topic {
   id: number;
@@ -125,15 +126,17 @@ const TopicPage: React.FC = () => {
   }, [slug]);
 
   return (
-    <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: "1200px", mx: "auto" }}>
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        textAlign="center"
-      >
-        {topics.find((t) => t.slug === slug)?.name || "News Articles"}
-      </Typography>
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
+      <NewsHeader />
+      <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: "1200px", mx: "auto", flex: 1 }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          gutterBottom
+          textAlign="center"
+        >
+          {topics.find((t) => t.slug === slug)?.name || "News Articles"}
+        </Typography>
 
       <Box
         sx={{
@@ -220,6 +223,8 @@ const TopicPage: React.FC = () => {
           ))}
         </Grid>
       )}
+      </Box>
+      <NewsFooter />
     </Box>
   );
 };

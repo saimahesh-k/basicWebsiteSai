@@ -11,6 +11,9 @@ import {
   Fade,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import NewsHeader from "../Components/NewsHeader";
+import NewsFooter from "../Components/NewsFooter";
+import InFleekLogoComponent from "../Components/InFleekLogo";
 
 // Icons
 import PublicIcon from "@mui/icons-material/Public";
@@ -108,23 +111,41 @@ const NewsPage: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: "1200px", mx: "auto" }}>
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        gutterBottom
-        textAlign="center"
-      >
-        Trending News Topics
-      </Typography>
-      <Typography
-        variant="subtitle1"
-        color="text.secondary"
-        textAlign="center"
-        gutterBottom
-      >
-        Stay updated with the latest trends
-      </Typography>
+    <Box sx={{ minHeight: '100vh', backgroundColor: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
+      <NewsHeader />
+      <Box sx={{ p: { xs: 2, sm: 4 }, maxWidth: "1200px", mx: "auto", flex: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 2 }}>
+          <InFleekLogoComponent width={50} height={50} />
+        </Box>
+        
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          gutterBottom
+          textAlign="center"
+        >
+          Trending News Topics
+        </Typography>
+        <Typography
+          variant="h6"
+          color="primary"
+          textAlign="center"
+          sx={{ 
+            fontStyle: 'italic', 
+            mb: 1,
+            fontWeight: 500,
+          }}
+        >
+          Your Daily Dose, On Fleek
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          color="text.secondary"
+          textAlign="center"
+          gutterBottom
+        >
+          Stay updated with the latest trends
+        </Typography>
 
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
@@ -150,6 +171,8 @@ const NewsPage: React.FC = () => {
           ))}
         </Grid>
       )}
+      </Box>
+      <NewsFooter />
     </Box>
   );
 };
